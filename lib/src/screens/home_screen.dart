@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laravel_news_app/src/widgets/drawerWidget.dart';
-import '../screens/pages/login.dart';
 import '../api/post_api.dart';
 import '../models/post.dart';
-import 'home_tabs/favourites.dart';
-import 'home_tabs/popular.dart';
-import 'home_tabs/whats_new.dart';
-import 'pages/about.dart';
-import 'pages/contact.dart';
-import 'pages/help.dart';
-import 'pages/settings.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
