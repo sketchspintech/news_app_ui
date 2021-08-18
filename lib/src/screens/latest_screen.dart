@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:laravel_news_app/src/api/post_api.dart';
+import 'package:laravel_news_app/src/models/post.dart';
 import 'package:laravel_news_app/src/widgets/drawerWidget.dart';
+import 'package:laravel_news_app/src/widgets/post_item_card_widget.dart';
 
 class LatestPostScreen extends StatefulWidget {
   @override
@@ -7,6 +10,15 @@ class LatestPostScreen extends StatefulWidget {
 }
 
 class _LatestPostScreenState extends State<LatestPostScreen> {
+  PostApi postApi = PostApi();
+  Future<List<Post>> futurePosts;
+
+  @override
+  void initState() {
+    futurePosts = postApi.fetchAllPosts();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,104 +37,39 @@ class _LatestPostScreenState extends State<LatestPostScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: ListView.builder(
-          padding: EdgeInsets.all(12.0),
-          shrinkWrap: true,
-          primary: false,
-          itemCount: 6,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Card(
-                clipBehavior: Clip.hardEdge,
-                child: Container(
-                  width: 300,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            height: 190,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                            ),
-                          ),
-                          Positioned(
-                            right: 10,
-                            top: 10,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.bookmark,
-                                size: 35.0,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          Positioned(
-                            right: 10,
-                            bottom: 8,
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: IconButton(
-                                padding: EdgeInsets.only(right: 4),
-                                icon: Icon(
-                                  Icons.share,
-                                  size: 25.0,
-                                  color: Colors.blue,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Sports',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              'Virat Kohli fastest to 11,000 ODI runs',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              '17-06-2019',
-                              style: TextStyle(color: Colors.grey),
-                            )
-                          ],
+        child: FutureBuilder(
+          future: futurePosts,
+          builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return Container();
+                break;
+              case ConnectionState.none:
+                return Container();
+                break;
+              case ConnectionState.done:
+                if (snapshot.hasError) {
+                  return Container();
+                }
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    padding: EdgeInsets.all(12.0),
+                    shrinkWrap: true,
+                    primary: false,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: PostItemCardWidget(
+                          post: snapshot.data[index],
                         ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
+                      );
+                    },
+                  );
+                }
+            }
+            return Container();
           },
         ),
       ),

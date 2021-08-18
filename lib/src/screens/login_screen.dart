@@ -6,6 +6,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,7 +142,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         Container(
                           width: 140.0,
                           child: RaisedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                              } else {
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              }
+                            },
                             color: Colors.blue,
                             padding: EdgeInsets.symmetric(
                                 vertical: 18.0, horizontal: 30.0),
@@ -171,82 +183,81 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 35.0),
-                    GestureDetector(
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    SizedBox(height: 20.0),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 40.0,
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.blueAccent, width: 3.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      child: GestureDetector(
-                        child: Center(
-                          child: Text(
-                            'Login with Facebook',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20.0),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 40.0,
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.redAccent, width: 3.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      child: GestureDetector(
-                        child: Center(
-                          child: Text(
-                            'Login with google',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 60.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Don\'t have an account?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22.0,
-                          ),
-                        ),
-                        SizedBox(width: 5.0),
-                        GestureDetector(
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                              color: Colors.pinkAccent,
-                              fontSize: 22.0,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
+              ),
+              SizedBox(height: 35.0),
+              GestureDetector(
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: MediaQuery.of(context).size.width - 40.0,
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueAccent, width: 3.0),
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+                child: GestureDetector(
+                  child: Center(
+                    child: Text(
+                      'Login with Facebook',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: MediaQuery.of(context).size.width - 40.0,
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.redAccent, width: 3.0),
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+                child: GestureDetector(
+                  child: Center(
+                    child: Text(
+                      'Login with google',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 60.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                    ),
+                  ),
+                  SizedBox(width: 5.0),
+                  GestureDetector(
+                    child: Text(
+                      'Register',
+                      style: TextStyle(
+                        color: Colors.pinkAccent,
+                        fontSize: 22.0,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

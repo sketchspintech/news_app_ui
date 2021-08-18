@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:laravel_news_app/src/screens/categories_screen.dart';
 import 'package:laravel_news_app/src/screens/favourite_screen.dart';
+import 'package:laravel_news_app/src/screens/forgot_password_screen.dart';
 import 'package:laravel_news_app/src/screens/home_screen.dart';
 import 'package:laravel_news_app/src/screens/latest_screen.dart';
 import 'package:laravel_news_app/src/screens/login_screen.dart';
 import 'package:laravel_news_app/src/screens/profile_screen.dart';
 import 'package:laravel_news_app/src/screens/settings_screen.dart';
+import 'package:laravel_news_app/src/screens/single_post_screen.dart';
+import 'package:laravel_news_app/src/screens/single_video_post_screen.dart';
 import 'package:laravel_news_app/src/screens/video_screen.dart';
+import 'package:laravel_news_app/src/screens/category_post_screen.dart';
 
 class DrawerWidget extends StatefulWidget {
   @override
@@ -128,6 +132,36 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (BuildContext context) => CategoryPostsScreen(),
+                ),
+              );
+            },
+            leading: Icon(
+              Icons.favorite,
+              size: 30.0,
+            ),
+            title: Text('Category Posts', style: _drawerText),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => SingleVideoPostScreen(),
+                ),
+              );
+            },
+            leading: Icon(
+              Icons.favorite,
+              size: 30.0,
+            ),
+            title: Text('Single Video', style: _drawerText),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
                   builder: (BuildContext context) => ProfileScreen(),
                 ),
               );
@@ -145,6 +179,21 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               size: 30.0,
             ),
             title: Text('Share App', style: _drawerText),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => SinglePostScreen(),
+                ),
+              );
+            },
+            leading: Icon(
+              Icons.settings,
+              size: 30.0,
+            ),
+            title: Text('Single Post', style: _drawerText),
           ),
           ListTile(
             onTap: () {
@@ -175,6 +224,21 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               size: 30.0,
             ),
             title: Text('login', style: _drawerText),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ForgotPasswordScreen(),
+                ),
+              );
+            },
+            leading: Icon(
+              Icons.exit_to_app,
+              size: 30.0,
+            ),
+            title: Text('Forgot Password', style: _drawerText),
           ),
           ListTile(
             onTap: () {},

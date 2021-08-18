@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laravel_news_app/src/screens/pages/single_post.dart';
 import '../models/post.dart';
 
 class PostItemWidget extends StatelessWidget {
@@ -13,14 +12,7 @@ class PostItemWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SinglePostScreen(post: post),
-              ),
-            );
-          },
+          onTap: () {},
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

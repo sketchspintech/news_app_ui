@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laravel_news_app/src/screens/about_screen.dart';
 
 import 'category_manager_screen.dart';
 
@@ -10,7 +11,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    TextStyle _titltText = TextStyle(fontSize: 22.0);
+    TextStyle _titltText = TextStyle(fontSize: 20.0);
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -92,6 +93,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 thickness: 2,
               ),
               ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AboutScreen(),
+                    ),
+                  );
+                },
                 title: Text('About', style: _titltText),
               ),
             ],

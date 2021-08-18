@@ -107,12 +107,6 @@ class _ContactUsState extends State<ContactUs> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    // TODO: Loading, Send message
-
-                    String name = nameController.text;
-                    String email = emailController.text;
-                    String message = messageController.text;
-
                     setState(() {
                       isLoading = true;
                     });

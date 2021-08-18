@@ -1,21 +1,16 @@
 import 'package:http/http.dart' as http;
 
 class ApiUtil {
-  static const String MAIN_API_URL = '';
+  static const String MAIN_API_URL =
+      'http://192.168.8.101/food/deploy1/public/api/';
   // 'http://192.168.8.100/food/deploy1/public/api/';
   // http://127.0.0.1/food/deploy1/public/
 
+  // fetch all posts
+  // fetch all categories
+  // get trending posts
+  // get recently viewed posts
   getData(apiUrl) async {
-    String fullUrl = MAIN_API_URL + apiUrl;
-    return await http.get(fullUrl, headers: _headers());
-  }
-
-  getAllCategories(apiUrl) async {
-    String fullUrl = MAIN_API_URL + apiUrl;
-    return await http.get(fullUrl, headers: _headers());
-  }
-
-  getPostsByCategory(apiUrl) async {
     String fullUrl = MAIN_API_URL + apiUrl;
     return await http.get(fullUrl, headers: _headers());
   }

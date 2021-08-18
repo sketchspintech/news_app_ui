@@ -151,16 +151,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           SizedBox(
             height: 24,
           ),
-          SizedBox(
-            width: double.infinity,
-            child: RaisedButton(
-              child: Text(
-                'UPDATE',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              onPressed: () {
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue, width: 3),
+                borderRadius: BorderRadius.circular(8)),
+            child: GestureDetector(
+              onTap: () {
                 if (_formKey.currentState.validate()) {
                   setState(() {
                     isLoading = true;
@@ -171,6 +168,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   });
                 }
               },
+              child: Text(
+                'UPDATE',
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+              ),
             ),
           ),
         ],
